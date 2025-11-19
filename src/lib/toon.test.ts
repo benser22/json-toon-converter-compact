@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { jsonToToon, toonToJson } from './toon';
+import { jsonToToon, toonToJson, validateJson } from './toon';
 
 describe('TOON Converter', () => {
   it('should convert simple object', () => {
@@ -58,5 +58,11 @@ describe('TOON Converter', () => {
       const toon = jsonToToon(json);
       const back = toonToJson(toon);
       expect(back).toEqual(json);
+  });
+
+  it('should validate JSON strings', () => {
+    expect(validateJson('{"a":1}')).toBeNull();
+    const err = validateJson('{ a: 1 }');
+    expect(typeof err).toBe('string');
   });
 });

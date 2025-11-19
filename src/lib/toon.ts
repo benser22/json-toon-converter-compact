@@ -1,4 +1,6 @@
-export function jsonToToon(json: any): string {
+import type { JSONValue } from './types';
+
+export function jsonToToon(json: JSONValue | unknown): string {
   if (json === null || json === undefined) return '';
   
   if (Array.isArray(json)) {
@@ -32,7 +34,7 @@ export function jsonToToon(json: any): string {
   return String(json);
 }
 
-export function toonToJson(toon: string): any {
+export function toonToJson(toon: string): JSONValue {
   if (!toon.trim()) return {};
 
   const parseValue = (val: string): any => {
@@ -148,4 +150,13 @@ export function validateToon(toon: string): string | null {
   if (depth > 0) return "Unclosed parenthesis";
   
   return null; // Valid
+}
+
+export function validateJson(jsonStr: string): string | null {
+  try {
+    JSON.parse(jsonStr);
+    return null;
+  } catch (e: any) {
+    return e?.message ?? 'Invalid JSON';
+  }
 }

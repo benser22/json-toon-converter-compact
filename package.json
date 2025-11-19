@@ -1,11 +1,39 @@
 {
-  "name": "json-toon-converter",
-  "private": true,
-  "version": "0.0.0",
+  "name": "json-toon-converter-compact",
+  "version": "1.0.0",
+  "description": "TypeScript-based converter from JSON to TOON (Token-Oriented Object Notation)",
+  "main": "./dist/json-toon-converter.umd.cjs",
+  "module": "./dist/json-toon-converter.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/json-toon-converter.js",
+      "require": "./dist/json-toon-converter.umd.cjs"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benser22/json-toon-converter.git"
+  },
+  "keywords": [
+    "json",
+    "converter",
+    "TOON",
+    "typescript",
+    "vite"
+  ],
+  "author": "Benjamín",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json",
     "preview": "vite preview"
   },
   "devDependencies": {
